@@ -17,9 +17,42 @@
       </swiper>
     </div>
 
-    <div>
+    <div class="content">
+      <div class="category" v-for="(item,index) in articles" :key="index">
+        <div class="category-name">
+          {{item.title}}
+        </div>
+        <div class="content-item" v-for="(content,idx) in item.books" :key="idx">
+          <div class="img-wrap">
+            <img :src="content.img">
+          </div>
+          <div class="item-article">
+            <div class="title">
+              {{content.title}}
+            </div>
+            <div class="prev-content">
+              {{content.desc}}
+            </div>
+            <div class="type">前端开发</div>
+            <div class="author-details">
+              <span class="author-name">
+                Alex
+              </span>
+              <div class="look-msg">
+                <span class="create-time">
+                  两天前
+                </span>
+                <span class="look-number">
 
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -33,18 +66,15 @@
         interval: 3000,
         duration: 500,
         indicatorDots: true,
-        swiperArr: []
+        swiperArr: [],
+        articles: []
       }
     },
     methods: {
-      getData () {
-        let self = this
-        wx.request({
-          url: 'https://cloud-doc.leyix.com/api/v3/index?page=1',
-          success (data) {
-            console.log(data)
-            self.swiperArr = data.data.swiper
-          }
+      getCategory () {
+        fetch.get('/category/books').then(res => {
+          this.articles = res.data
+          console.log(res.data)
         })
       },
       getSwiper () {
@@ -56,21 +86,9 @@
     created () {
       // this.getData()
       this.getSwiper()
+      this.getCategory()
     }
   }
 </script>
 
-<style scoped lang="scss">
-  .swiper-wrap {
-    .swiper {
-      height: 300rpx;
-    }
-
-    img {
-      width: 750rpx;
-      height: 300rpx;
-      background: #000;
-    }
-  }
-
-</style>
+<style scoped lang="scss" src="@/css/index.scss"></style>
