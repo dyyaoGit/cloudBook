@@ -9,7 +9,7 @@
               :duration="duration" indicator-active-color="#ffffff">
         <block v-for="(item,index) in swiperArr" :key="index">
           <swiper-item>
-            <a href="/pages/book/main">
+            <a :href="'/pages/bookdesc/main?id='+ item.book._id">
               <img :src="item.img" >
             </a>
           </swiper-item>
@@ -33,17 +33,16 @@
             <div class="prev-content">
               {{content.desc}}
             </div>
-            <div class="type">前端开发</div>
             <div class="author-details">
               <span class="author-name">
-                Alex
+                {{content.author}}
               </span>
               <div class="look-msg">
                 <span class="create-time">
                   两天前
                 </span>
                 <span class="look-number">
-
+                  {{item.title}}  {{content.looknums}}人在看
                 </span>
               </div>
 

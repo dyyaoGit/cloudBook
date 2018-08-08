@@ -1,4 +1,5 @@
-const baseUrl = 'http://localhost:3000'
+const baseUrl = 'https://m.yaojunrong.com'
+// const baseUrl = 'http://localhost:3000'
 
 export const fetch = {
   get (url, data) {

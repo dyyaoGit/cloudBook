@@ -1,3 +1,4 @@
+
 .container {
   padding: 0 20rpx;
 }
@@ -28,8 +29,13 @@
   }
 
   .content-item {
+    margin-top: 30rpx;
     display: flex;
     justify-content: space-between;
+
+    .item-article {
+      position: relative;
+    }
 
     .title{
       padding: 10rpx 0;
@@ -40,7 +46,7 @@
     .prev-content {
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       overflow: hidden;
       line-height: 1.5;
       font-size: 12px;
@@ -51,14 +57,27 @@
 
   .img-wrap {
     img {
-      width: 200rpx;
-      height: 300rpx;
+      width: 220rpx;
+      height: 260rpx;
+      display: block;
+      box-shadow: 0 0 4px 0 rgba(0,0,0,.5);
     }
   }
 
   .item-article {
-    width: 450rpx;
+    width: 470rpx;
 
+  }
+
+  .author-details {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10rpx;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
   }
 
 }
