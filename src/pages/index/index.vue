@@ -22,7 +22,7 @@
         <div class="category-name">
           {{item.title}}
         </div>
-        <div class="content-item" v-for="(content,idx) in item.books" :key="idx">
+        <a :href="'/pages/bookdesc/main?id=' + content._id" class="content-item" v-for="(content,idx) in item.books" :key="idx">
           <div class="img-wrap">
             <img :src="content.img">
           </div>
@@ -48,7 +48,7 @@
 
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
 

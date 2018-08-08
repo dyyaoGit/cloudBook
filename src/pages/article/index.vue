@@ -1,6 +1,6 @@
 <template>
   <div class="container" >
-    <div>
+    <div v-html="article.content">
     </div>
   </div>
 </template>
