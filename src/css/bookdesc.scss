@@ -1,8 +1,9 @@
-.container {
-  padding: 20rpx;
+@import './iconfont.css';
+.w710 {
+  width: 710rpx;
 }
-
 .book {
+  margin: 20rpx auto 0;
   display: flex;
 
   .book-img {
@@ -37,7 +38,7 @@
 
 //分享信息
 .share-wrap {
-  margin-top: 40rpx;
+  margin: 40rpx auto 30rpx;
   display: flex;
   justify-content: space-between;
   .share-btn {
@@ -46,6 +47,100 @@
     border: none;
     color: #444;
     font-size: 12px;
+    &::after {
+      border: none
+    }
+  }
+}
+
+.role {
+  height: 10rpx;
+  background: #f1f1f1;
+}
+
+
+//简介
+.intro {
+  padding: 20rpx;
+  font-size: 12px;
+  color: #555;
+
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40rpx;
+  }
+}
+
+//目录
+.catalog {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2rpx solid #f1f1f1;
+  border-bottom: 10rpx solid #f1f1f1;
+  line-height: 50px;
+  height: 50px;
+  padding: 0 20rpx;
+  color: #555;
+
+  .catalog-l {
+    display: flex;
+  }
+
+  .catalog-r {
+    font-size: 10px;
+  }
+
+  .show-catalog {
+    margin-right: 18rpx;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+  }
+
+  .total {
+    font-size: 12px;
+  }
+}
+//目录结束
+
+//底部阅读书籍按钮
+.read-book {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80rpx;
+  padding: 10rpx 14rpx;
+  font-size: 10px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,.3);
+
+  .start {
+    font-size: 12px;
+  }
+
+  button {
+    margin: 0;
+    background: #409eff;
+    color: #fff;
+    font-size: 12px;
+    height: 60rpx;
+    width: 710rpx;
+  }
+
+  .start {
+    border: 1px solid #000;
+  }
+
+  .start-text {
+    margin-left: 10rpx;
+    color: #333;
+    font-weight: 400;
+    font-size: 14px;
   }
 }
 

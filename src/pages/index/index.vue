@@ -62,7 +62,7 @@
     data () {
       return {
         autoplay: true,
-        interval: 3000,
+        interval: 5000,
         duration: 500,
         indicatorDots: true,
         swiperArr: [],
