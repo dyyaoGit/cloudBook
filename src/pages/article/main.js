@@ -6,6 +6,9 @@ app.$mount()
 
 export default {
   config: {
+    usingComponents: {
+      wemark: '/static/wemark/wemark'
+    },
     'navigationBarTitleText': '文章详情'
   }
 }

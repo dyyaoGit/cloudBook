@@ -1,6 +1,7 @@
 <template>
   <div class="container" >
-    <div>
+    <div class="content" v-if="article.title">
+      <wemark  :md="article.article.content" link :highlight="true" type="rich-text"></wemark>
     </div>
   </div>
 </template>
