@@ -9,7 +9,7 @@
               :duration="duration" indicator-active-color="#ffffff">
         <block v-for="(item,index) in swiperArr" :key="index">
           <swiper-item>
-            <a :href="'/pages/bookdesc/main?id='+ item.book._id">
+            <a v-if="item.book" :href="'/pages/bookdesc/main?id='+ item.book._id">
               <img :src="item.img" >
             </a>
           </swiper-item>
@@ -79,6 +79,7 @@
       getSwiper () {
         fetch.get('/swiper').then(data => {
           this.swiperArr = data.data
+          console.log(this.swiperArr)
         })
       }
     },

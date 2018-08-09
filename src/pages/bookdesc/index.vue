@@ -123,7 +123,7 @@
       console.log(obj)
       return {
         title: this.bookMsg.title,
-        path: '/pages/bookdesc/main',
+        path: `/pages/bookdesc/main?id=${this.bookId}`,
         imageUrl: this.bookMsg.img
       }
     }
