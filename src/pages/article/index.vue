@@ -1,7 +1,16 @@
 <template>
   <div class="container" >
     <div class="content" v-if="article.title">
-      <wemark  :md="article.article.content" link :highlight="true" ></wemark>
+      <div :style="{fontSize: fontSize + 'px'}">
+        <wemark :md="article.article.content" link :highlight="true" ></wemark>
+      </div>
+    </div>
+    <div class="menu">
+      <span class="iconfont icon-prev click" @click="handlePrev"></span>
+      <span class="iconfont icon-mulu click"></span>
+      <span class="iconfont icon-zitifangda click" @click="handleAdd"></span>
+      <span class="iconfont icon-zitisuoxiao click" @click="handleReduce"></span>
+      <span class="iconfont icon-next click" @click="handleNext"></span>
     </div>
   </div>
 </template>
@@ -14,31 +23,51 @@
       return {
         articleId: '',
         article: {},
-        md: {}
+        index: 0,
+        fontSize: 20,
+        titles: []
       }
     },
     methods: {
-      getData () {
-        fetch.get(`/article/${this.articleId}`).then(res => {
-          this.article = res.data
-          // console.log(this.article)
-        })
+      async getData () {
+        const article = await fetch.get(`/article/${this.articleId}`)
+        const titles = await fetch.get(`/titles/${this.$root.$mp.query.bookId}`)
+        this.article = article.data
+        this.titles = titles.data
+        this.index = this.titles.findIndex(item => item._id === this.articleId)
       },
-      handleClick () {
-        wx.showModal({
-          title: '该功能将在上线后逐步完善'
-        })
+      handleAdd () {
+        this.fontSize += 4
       },
-      handleRead () {
-        wx.navigateTo({
-          url: `/pages/catalog/main?id=${this.bookId}`
-        })
+      handleReduce () {
+        this.fontSize -= 4
+      },
+      handlePrev () {
+        console.log(this.titles)
+        if (!this.titles[this.index - 1]) {
+          wx.showToast({title: '已经是第一章了'})
+        } else {
+          fetch.get(`/article/${this.titles[this.index - 1]._id}`)
+            .then(article => {
+              this.article = article.data
+              this.index--
+            })
+        }
+      },
+      handleNext () {
+        if (!this.titles[this.index + 1]) {
+          wx.showToast({title: '已经是最后一章了'})
+        } else {
+          fetch.get(`/article/${this.titles[this.index + 1]._id}`)
+            .then(article => {
+              this.article = article.data
+              this.index++
+            })
+        }
       }
     },
     onLoad (options) {
-      console.log(options)
       this.articleId = options.id
-
       this.getData()
     },
     onShareAppMessage (obj) {

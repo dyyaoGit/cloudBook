@@ -1,6 +1,6 @@
 <template>
   <div class="container" >
-    <a :href="'/pages/article/main?id=' + item._id " v-for="(item, index) in titles" :key="index" class="title">
+    <a :href="'/pages/article/main?id=' + item._id + '&bookId=' + bookId" v-for="(item, index) in titles" :key="index" class="title">
       {{item.title}}
     </a>
   </div>

@@ -1,3 +1,30 @@
+@import './iconfont.css';
+
 .container {
   padding: 20rpx 40rpx;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1rpx solid #eee;
+  border-radius: 0 2px 2px 0 rgba(0,0,0,.2);
+  .iconfont {
+    font-size: 22px;
+    width: 100rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+  }
+}
+
+.click:active {
+  background: #f1f1f1;
+  color: #fff;
 }
