@@ -25,7 +25,7 @@ Component({
     },
     data: {
         parsedData: {},
-		richTextNodes: []
+		    richTextNodes: []
     },
     methods: {
         parseMd(){

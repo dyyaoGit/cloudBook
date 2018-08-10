@@ -1,7 +1,7 @@
 <template>
   <div class="container" >
     <div class="content" v-if="article.title">
-      <wemark  :md="article.article.content" link :highlight="true" type="rich-text"></wemark>
+      <wemark  :md="article.article.content" link :highlight="true" ></wemark>
     </div>
   </div>
 </template>
@@ -13,14 +13,15 @@
     data () {
       return {
         articleId: '',
-        article: {}
+        article: {},
+        md: {}
       }
     },
     methods: {
       getData () {
         fetch.get(`/article/${this.articleId}`).then(res => {
           this.article = res.data
-          console.log(this.article)
+          // console.log(this.article)
         })
       },
       handleClick () {
@@ -51,4 +52,4 @@
   }
 </script>
 
-<style scoped lang="scss" src="@/css/bookdesc.scss"></style>
+<style scoped lang="scss" src="@/css/article.scss"></style>

@@ -1,9 +1,9 @@
 <script>
-export default {
-  created () {
+  export default {
+    created () {
 
+    }
   }
-}
 </script>
 
 <style>
