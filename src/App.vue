@@ -1,5 +1,8 @@
 <script>
   export default {
+    globalData: {
+      isLoading: false
+    },
     created () {
 
     }
@@ -8,4 +11,6 @@
 
 <style>
 
+
 </style>
+<style src="@/css/loading.scss" lang="scss"></style>

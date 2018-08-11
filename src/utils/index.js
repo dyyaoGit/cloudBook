@@ -1,8 +1,11 @@
+// let app = getApp()
+import store from '@/store'
 let baseUrl = 'https://m.yaojunrong.com'
 
 export const fetch = {
   get (url, data) {
     return new Promise((resolve, reject) => {
+      store.commit('SET_STATE_ISlOADING', true)
       wx.request({
         url: baseUrl + url,
         data,
@@ -11,9 +14,13 @@ export const fetch = {
           'content-type': 'application/json' // 默认值
         },
         success: function (res) {
+          store.commit('SET_STATE_ISlOADING', false)
+          wx.hideLoading()
           resolve(res.data)
         },
         error (err) {
+          store.commit('SET_STATE_ISlOADING', false)
+          wx.hideLoading()
           reject(err)
         }
       })
@@ -39,40 +46,13 @@ export const fetch = {
   }
 }
 
-// const baseUrl = 'https://m.yaojunrong.com'
-// const baseUrl = 'http://localhost:3000'
-
-// export const fetch = {
-//   get (url, data) {
-//     return new Promise((resolve, reject) => {
-//       wx.request({
-//         url: baseUrl + url,
-//         method: 'GET',
-//         data,
-//         header: {'content-type': 'application/json'},
-//         success (res) {
-//           resolve(res.data)
-//         },
-//         fail (err) {
-//           reject(err)
-//         }
-//       })
-//     })
-//   },
-//   post (url, data) {
-//     return new Promise((resolve, reject) => {
-//       wx.request({
-//         url: baseUrl + url,
-//         method: 'POST',
-//         data,
-//         header: {'content-type': 'application/json'},
-//         success (res) {
-//           resolve(res.data)
-//         },
-//         fail (err) {
-//           reject(err)
-//         }
-//       })
-//     })
-//   }
-// }
+export const loading = {
+  show (title = 'loading') {
+    wx.showLoading({
+      title
+    })
+  },
+  hide () {
+    wx.hideLoading()
+  }
+}

@@ -7,7 +7,6 @@
 .menu {
   display: flex;
   justify-content: space-between;
-  padding: 0 60rpx;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -28,3 +27,45 @@
   background: #f1f1f1;
   color: #fff;
 }
+
+
+//遮罩
+.mask {
+  position: fixed;
+  z-index: 800;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.2);
+
+}
+
+//目录
+.titles {
+  transition: transform .5s ease;
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 600rpx;
+  height: 100%;
+  background: #fff;
+  border-right: 1px solid #f1f1f1;
+  padding-left: 40rpx;
+
+  .title-item {
+    font-size: 14px;
+    color: #444;
+    padding-left: 40rpx;
+    line-height: 30px;
+    height: 30px;
+
+    .text {
+      border-bottom: 1px solid #f1f1f1;
+    }
+  }
+}
+
+

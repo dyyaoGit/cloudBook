@@ -10,7 +10,7 @@
     img {
       width: 220rpx;
       height: 260rpx;
-      box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+      //box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
     }
   }
 }
@@ -42,7 +42,8 @@
   display: flex;
   justify-content: space-between;
   .share-btn {
-    width: 30%;
+    margin: 0;
+    width: 300rpx;
     background: #e9e9e9;
     border: none;
     color: #444;

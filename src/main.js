@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import App from './App'
+import {fetch} from '@/utils/index'
+import store from './store'
 
+Vue.prototype.$fetch = fetch
+Vue.prototype.$store = store
 Vue.config.productionTip = false
 App.mpType = 'app'
 
