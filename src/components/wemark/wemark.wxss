@@ -65,7 +65,7 @@
 .wemark_block_code{
 	display: block;
 	padding:10px;
-	font-size:28rpx;
+	font-size:70%;
 	line-height: 1.5em;
 	border:1px solid #f0f0f0;
 	white-space: pre;

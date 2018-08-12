@@ -11,9 +11,12 @@ export const fetch = {
         data,
         method: 'GET',
         header: {
-          'content-type': 'application/json' // 默认值
+          'content-type': 'application/json', // 默认值
+          'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQWxleCIsImRhdGEiOiJuZXdNc2ciLCJpYXQiOjE1MzQxMDM1MTAsImV4cCI6MTUzNjY5NTUxMH0.0NNOFlS9jsNCTuU3WIegjLwJJ-yAzfe3u5XP2avIT_8',
+          myToken: '3123213'
         },
         success: function (res) {
+          console.log(res)
           store.commit('SET_STATE_ISlOADING', false)
           wx.hideLoading()
           resolve(res.data)
