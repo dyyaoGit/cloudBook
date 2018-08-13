@@ -1,7 +1,8 @@
 <template>
   <div class="container" >
-    <img src="/static/imgs/loading3.svg" class="svg-loading" v-show="isLoading">
-    <div v-if="!isLoading"
+    <!--<img src="/static/imgs/loading3.svg" class="svg-loading" v-show="isLoading">-->
+    <img src="/static/imgs/loading4.svg" v-show="loading" class="my-svg">
+    <div v-if="!loading"
       class="content">
       <div class="book w710">
         <div class="book-img">
@@ -95,7 +96,8 @@
       return {
         bookId: '',
         bookMsg: {},
-        titleLength: 0
+        titleLength: 0,
+        loading: false
       }
     },
     computed: {
@@ -105,7 +107,9 @@
       getData () {
         this.bookMsg = {}
         this.titleLength = 0
+        this.loading = true
         fetch.get(`/book/${this.bookId}`).then(res => {
+          this.loading = false
           this.bookMsg = res.data
           this.titleLength = res.length
         }).catch(err => {
@@ -142,3 +146,15 @@
 </script>
 
 <style scoped lang="scss" src="@/css/bookdesc.scss"></style>
+<style>
+  .my-svg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 200rpx;
+    height: 200rpx;
+    margin: auto;
+  }
+</style>
