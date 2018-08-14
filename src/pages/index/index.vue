@@ -87,10 +87,44 @@
           this.swiperArr = data.data
           console.log(this.swiperArr)
         })
+      },
+      getAuth () {
+        let self = this
+        // wx.getSetting({
+        //   success (res) {
+        //     if (!res.authSetting['scope.userInfo']) {
+        //       wx.authorize({
+        //         scope: 'scope.userInfo',
+        //         success () {
+        //           wx.getUserInfo({
+        //             success (userInfo) {
+        //               console.log(userInfo)
+        //             }
+        //           })
+        //         },
+        //         fail () {
+        //           wx.showToast({
+        //             title: '需要授权才能继续使用',
+        //             icon: 'false',
+        //             duration: 2000
+        //           })
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
+        wx.login({
+          success (res) {
+            console.log(res)
+            self.$fetch.post('/login', {code: res.code}).then(user => {
+              console.log(user)
+            })
+          }
+        })
       }
     },
     created () {
-      // this.getData()
+      this.getAuth()
       this.getSwiper()
       this.getCategory()
     }

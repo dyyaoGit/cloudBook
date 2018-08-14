@@ -34,7 +34,6 @@
       }
     },
     onLoad (options) {
-      console.log(options)
       this.bookId = options.id
       this.getData()
     }
