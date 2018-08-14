@@ -1,18 +1,17 @@
 // let app = getApp()
 import store from '@/store'
-// let baseUrl = 'https://m.yaojunrong.com'
-let baseUrl = 'http://localhost:3000'
+let baseUrl = 'https://m.yaojunrong.com'
+// let baseUrl = 'http://localhost:3000'
 
 export const fetch = {
   get (url, data) {
     return new Promise((resolve, reject) => {
-      let cookie = wx.getStorageSync('cookie')
+      let token = wx.getStorageSync('token')
       let header = {
         'content-type': 'application/json'
       }
-      console.log(cookie)
-      if (cookie) {
-        header.Cookie = 'SESSIONID=' + cookie.SESSIONID + '; SESSIONID.sig=' + cookie['SESSIONID.sig']
+      if (token) {
+        header.token = token
       }
       store.commit('SET_STATE_ISlOADING', true)
       wx.request({
@@ -21,14 +20,8 @@ export const fetch = {
         method: 'GET',
         header: header,
         success: function (res) {
-          console.log(res.header['Set-Cookie'])
-          if (res.header['Set-Cookie']) {
-            let obj = {}
-            let session = res.header['Set-Cookie'].split(';')
-            obj.SESSIONID = session[0].substring(10)
-            obj['SESSIONID.sig'] = session[2].split('SESSIONID.sig=')[1]
-            console.log(obj)
-            wx.setStorageSync('cookie', obj)
+          if (res.header['Token']) {
+            wx.setStorageSync('token', res.header['Token'])
           }
           store.commit('SET_STATE_ISlOADING', false)
           wx.hideLoading()
@@ -44,13 +37,12 @@ export const fetch = {
   },
   post (url, data) {
     return new Promise((resolve, reject) => {
-      let cookie = wx.getStorageSync('cookie')
+      let token = wx.getStorageSync('token')
       let header = {
         'content-type': 'application/json'
       }
-      console.log(cookie)
-      if (cookie) {
-        header.Cookie = 'SESSIONID=' + cookie.SESSIONID + '; SESSIONID.sig=' + cookie['SESSIONID.sig']
+      if (token) {
+        header.token = token
       }
       store.commit('SET_STATE_ISlOADING', true)
       wx.request({
@@ -59,14 +51,8 @@ export const fetch = {
         method: 'POST',
         header: header,
         success: function (res) {
-          console.log(res.header['Set-Cookie'])
-          if (res.header['Set-Cookie']) {
-            let obj = {}
-            let session = res.header['Set-Cookie'].split(';')
-            obj.SESSIONID = session[0].substring(10)
-            obj['SESSIONID.sig'] = session[2].split('SESSIONID.sig=')[1]
-            console.log(obj)
-            wx.setStorageSync('cookie', obj)
+          if (res.header['Token']) {
+            wx.setStorageSync('token', res.header['Token'])
           }
           store.commit('SET_STATE_ISlOADING', false)
           wx.hideLoading()
@@ -91,4 +77,17 @@ export const loading = {
   hide () {
     wx.hideLoading()
   }
+}
+
+console.log(fetch.get)
+export const login = () => {
+  return new Promise(resolve => {
+    wx.login({
+      success (res) {
+        fetch.post('/login', {code: res.code}).then(user => {
+          resolve(user)
+        })
+      }
+    })
+  })
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container" >
-    <div>
-
+    <div v-for="item in collection" :key="item._id">
+      <img :src="item.book.img">
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@
       getCollection () {
         this.$fetch.get('/collection').then(res => {
           console.log(res)
+          this.collection = res.data
         })
       }
     },
@@ -32,6 +33,9 @@
         path: '/pages/article/main?id=' + this.articleId,
         imageUrl: this.article.article.img
       }
+    },
+    onShow () {
+      this.getCollection()
     }
   }
 </script>

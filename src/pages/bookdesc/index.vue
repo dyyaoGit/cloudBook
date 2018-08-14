@@ -27,7 +27,7 @@
 
       <!--share start-->
       <div class="share-wrap w710">
-        <button class="share-btn">
+        <button class="share-btn" @click="handleCollect">
           加入收藏
         </button>
         <button class="share-btn" open-type="share">
@@ -124,6 +124,27 @@
       handleRead () {
         wx.navigateTo({
           url: `/pages/catalog/main?id=${this.bookId}`
+        })
+      },
+      handleCollect () {
+        let params = {
+          bookId: this.bookId
+        }
+        this.$fetch.post('/collection', params).then(res => {
+          console.log(res)
+          if (res.code === 200) {
+            wx.showToast({
+              title: '收藏成功',
+              icon: 'success',
+              duration: 1000
+            })
+          } else {
+            wx.showToast({
+              title: res.msg,
+              icon: 'warning',
+              duration: 1000
+            })
+          }
         })
       }
     },
