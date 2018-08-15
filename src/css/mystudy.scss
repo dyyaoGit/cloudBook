@@ -1,0 +1,59 @@
+.container {
+  padding: 40rpx;
+}
+
+.read-item {
+  margin-bottom: 40rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #515151;
+
+  .article-title {
+    width: 450rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 12px;
+    color: #333;
+  }
+
+  .progress-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .progress {
+      width: 70%;
+    }
+  }
+
+  .last-read {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: space-between;
+
+    .btn {
+      wdith: 36%;
+      height: 50rpx;
+      line-height: 50rpx;
+      margin: 0;
+      font-size: 12px;
+      background: #e5e5e5;
+      color: #444;
+    }
+  }
+
+  img {
+    width: 180rpx;
+    height: 240rpx;
+  }
+}

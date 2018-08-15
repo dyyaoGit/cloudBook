@@ -118,6 +118,16 @@
         path: '/pages/article/main?id=' + this.articleId,
         imageUrl: this.article.article.img
       }
+    },
+    watch: {
+      article (val) {
+        console.log('val', val)
+        if (val.title) {
+          wx.setNavigationBarTitle({
+            title: val.title
+          })
+        }
+      }
     }
   }
 </script>

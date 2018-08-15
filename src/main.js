@@ -23,12 +23,24 @@ export default {
       navigationBarTextStyle: 'black'
     },
     tabBar: {
+      color: '#8a8a8a',
+      selectedColor: '#1296db',
+      backgroundColor: '#ffffff',
       list: [{
         pagePath: 'pages/index/main',
-        text: '首页'
+        text: '首页',
+        iconPath: '/static/icon/home.png',
+        selectedIconPath: '/static/icon/home_active.png'
       }, {
-        pagePath: 'pages/collection/main',
-        text: '收藏'
+        pagePath: 'pages/mystudy/main',
+        text: '我的阅读',
+        iconPath: '/static/icon/read.png',
+        selectedIconPath: '/static/icon/read_active.png'
+      }, {
+        pagePath: 'pages/person/main',
+        text: '个人中心',
+        iconPath: '/static/icon/person.png',
+        selectedIconPath: '/static/icon/person_active.png'
       }]
     }
   }

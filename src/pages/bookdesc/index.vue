@@ -27,8 +27,8 @@
 
       <!--share start-->
       <div class="share-wrap w710">
-        <button class="share-btn" @click="handleCollect">
-          加入收藏
+        <button class="share-btn" @click="handleCollect" :disabled="isCollected">
+          {{isCollected ? '已收藏' : '加入收藏'}}
         </button>
         <button class="share-btn" open-type="share">
           分享好友
@@ -97,7 +97,8 @@
         bookId: '',
         bookMsg: {},
         titleLength: 0,
-        loading: false
+        loading: false,
+        isCollected: false
       }
     },
     computed: {
@@ -111,6 +112,7 @@
         fetch.get(`/book/${this.bookId}`).then(res => {
           this.loading = false
           this.bookMsg = res.data
+          this.isCollected = res.isCollect === 1
           this.titleLength = res.length
         }).catch(err => {
           console.log(err)
@@ -138,6 +140,7 @@
               icon: 'success',
               duration: 1000
             })
+            this.isCollected = 1
           } else {
             wx.showToast({
               title: res.msg,
