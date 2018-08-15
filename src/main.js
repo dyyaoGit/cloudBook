@@ -2,9 +2,11 @@ import Vue from 'vue'
 import App from './App'
 import {fetch} from '@/utils/index'
 import store from './store'
+import {axios} from '@/utils/fetch'
 
 Vue.prototype.$fetch = fetch
 Vue.prototype.$store = store
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 App.mpType = 'app'
 
