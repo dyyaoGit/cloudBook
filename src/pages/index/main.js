@@ -6,6 +6,8 @@ app.$mount()
 
 export default {
   config: {
-    'navigationBarTitleText': '云书'
+    'navigationBarTitleText': '云书',
+    'enablePullDownRefresh': true,
+    'onReachBottomDistance': 50
   }
 }

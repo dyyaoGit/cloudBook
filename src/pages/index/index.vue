@@ -59,12 +59,8 @@
 
 <script>
   import { fetch, login } from '@/utils/index.js'
-  import {mapState} from 'vuex'
 
   export default {
-    computed: {
-      ...mapState(['isLoading'])
-    },
     data () {
       return {
         autoplay: true,
@@ -72,21 +68,35 @@
         duration: 500,
         indicatorDots: true,
         swiperArr: [],
-        articles: []
+        articles: [],
+        pn: 1,
+        isLoading: false,
+        hasMore: true
       }
     },
     methods: {
       getCategory () {
-        fetch.get('/category/books').then(res => {
+        this.isLoading = true
+        fetch.get('/category/books', {pn: this.pn}).then(res => {
           this.articles = res.data
-          console.log(res.data)
+          this.isLoading = false
         })
       },
       getSwiper () {
         fetch.get('/swiper').then(data => {
           this.swiperArr = data.data
-          console.log(this.swiperArr)
         })
+      },
+      async getMoreCategory () {
+        const {data} = await this.$fetch.get('/category/books', {pn: this.pn})
+        if (data && data.length > 0) {
+          console.log(data)
+          console.log(this.articles)
+          this.articles = [...this.articles, ...data]
+          this.hasMore = true
+        } else {
+          this.hasMore = false
+        }
       }
     },
     created () {
@@ -94,6 +104,13 @@
         this.getSwiper()
         this.getCategory()
       })
+    },
+    onPullDownRefresh () {
+
+    },
+    onReachBottom () {
+      this.pn++
+      this.getMoreCategory()
     }
   }
 </script>
