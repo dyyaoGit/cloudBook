@@ -35,7 +35,7 @@ export const fetch = {
       })
     })
   },
-  post (url, data) {
+  post (url, data, method = 'POST') {
     return new Promise((resolve, reject) => {
       let token = wx.getStorageSync('token')
       let header = {
@@ -48,7 +48,7 @@ export const fetch = {
       wx.request({
         url: baseUrl + url,
         data,
-        method: 'POST',
+        method,
         header: header,
         success: function (res) {
           if (res.header['Token']) {
@@ -65,6 +65,9 @@ export const fetch = {
         }
       })
     })
+  },
+  delete (url, data) {
+    this.post(url, data, 'DELETE')
   }
 }
 
