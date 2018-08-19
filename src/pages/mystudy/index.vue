@@ -1,7 +1,7 @@
 <template>
   <div class="container" >
     <img src="/static/imgs/loading3.svg" v-if="isLoading" class="svg-loading">
-    <div class="content">
+    <div class="content" v-if="!isLoading">
       <div class="read-item" v-for="(item, index) in readlist" :key="index">
         <img :src="item.book.img" >
         <div class="article-title">
@@ -35,7 +35,7 @@
             <button class="btn" @click="comtinueRead(item.title)">
               继续阅读
             </button>
-            <button class="btn">
+            <button class="btn" @click="jumpToCatalog(item.book)">
               查看文档
             </button>
           </div>
@@ -73,6 +73,11 @@
         console.log(title)
         wx.navigateTo({
           url: '/pages/article/main?id=' + title._id + '&bookId=' + title.bookId
+        })
+      },
+      jumpToCatalog (book) {
+        wx.navigateTo({
+          url: '/pages/catalog/main?id=' + book._id
         })
       }
     },
